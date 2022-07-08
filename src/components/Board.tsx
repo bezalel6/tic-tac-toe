@@ -22,6 +22,9 @@ function Board(props: any) {
     setGameStatus(status);
     currentState.setAll();
     setTurn(currentState.player2Move());
+    if (status === "Game Goes On" && !currentState.x2Move) {
+      go();
+    }
     return plr;
   };
   type AiState = "ready" | "---" | "thinking";
@@ -59,9 +62,9 @@ function Board(props: any) {
       <button className={"new-game-btn"} onClick={newGame}>
         New Game
       </button>
-      <button className={"go-btn"} onClick={go}>
+      {/* <button className={"go-btn"} onClick={go}>
         {aiState === "ready" ? "ai move" : aiState}
-      </button>
+      </button> */}
       <div className="container">
         {currentState.board.map((rowArr, row) => {
           return rowArr.map((state, col) => {
